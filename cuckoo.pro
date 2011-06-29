@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2011-06-29T18:13:30
+# Project created by QtCreator 2011-06-29T19:55:54
 #
 #-------------------------------------------------
 
@@ -11,8 +11,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        cuckoo.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += cuckoo.h
 
-FORMS    += mainwindow.ui
+FORMS    += cuckoo.ui
