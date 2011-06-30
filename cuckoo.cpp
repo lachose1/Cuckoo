@@ -5,14 +5,31 @@
 
 Cuckoo::Cuckoo(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Cuckoo), _file("")
+    ui(new Ui::Cuckoo), _file(""), _username(""), _password(""), _connectionStatus(""), _started(false), _ready(false)
 {
     ui->setupUi(this);
+    ui->timeLeft->setTime(ui->timeBetween->time());
 }
 
 Cuckoo::~Cuckoo()
 {
     delete ui;
+}
+
+void Cuckoo::checkReady()
+{
+    if(!ui->twitterUsername->text().isEmpty() && !ui->twitterUsername->text().isEmpty())
+    {
+        _ready = true;
+        connectTwitter();
+    }
+    else
+        _ready = false;
+}
+
+void Cuckoo::connectTwitter()
+{
+
 }
 
 void Cuckoo::on_actionQuit_triggered()
@@ -34,4 +51,22 @@ void Cuckoo::on_browseFilesButton_clicked()
 {
     _file = QFileDialog::getOpenFileName(this, "Choose file", "", "Text files (*.txt)");
     ui->tweetFile->setText(_file);
+    checkReady();
+}
+
+void Cuckoo::on_timeBetween_dateTimeChanged()
+{
+    ui->timeLeft->setTime(ui->timeBetween->time());
+}
+
+void Cuckoo::on_twitterUsername_textChanged(const QString & text )
+{
+    _username = text;
+    checkReady();
+}
+
+void Cuckoo::on_twitterPassword_textChanged(const QString & text )
+{
+    _password = text;
+    checkReady();
 }
