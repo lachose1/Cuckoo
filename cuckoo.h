@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QtNetwork/QtNetwork>
+#include <QUrl>
 
 namespace Ui {
     class Cuckoo;
@@ -17,6 +19,7 @@ public:
     explicit Cuckoo(QWidget *parent = 0);
     void checkReady();
     void connectTwitter();
+    void requestToken();
     ~Cuckoo();
 
 private slots:
@@ -30,10 +33,13 @@ private slots:
 
 private:
     Ui::Cuckoo *ui;
+    QNetworkAccessManager* _nam;
     QString _file;
     QString _username;
     QString _password;
     QString _connectionStatus;
+    QString _consumerKey;
+    QString _consumerSecret;
     bool _started;
     bool _ready;
 
